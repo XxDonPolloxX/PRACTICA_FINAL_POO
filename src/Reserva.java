@@ -5,4 +5,5 @@ public class Reserva {
     private Date fechaInicio;
     private Date fechaFin;
     private ArrayList<Reserva> reservas;
+
 }
