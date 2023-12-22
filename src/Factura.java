@@ -4,4 +4,6 @@ public class Factura {
     private String id;
     private float costeTotal;
     private Date fechaFacturacion;
+    private static int numFactura;
+
 }
