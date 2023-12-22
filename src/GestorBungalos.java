@@ -25,6 +25,7 @@ public class GestorBungalos {
         for(i=0;i<bungalos.size();i++)
         {
             if(bungalos.get(i).getId().equals(id)) {
+                System.out.println(bungalos.get(i).getNombre());
                 return bungalos.get(i);
                 }
             }
