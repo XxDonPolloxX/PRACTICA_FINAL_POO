@@ -32,4 +32,5 @@ public class Bungalo {
         id =  "B" + numBungalo;
         return id;
     }
+
 }
