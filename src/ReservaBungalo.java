@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ReservaBungalo extends Reserva{
     private Bungalo bungalo;
@@ -7,7 +8,8 @@ public class ReservaBungalo extends Reserva{
     private Cliente cliente;
     private static int numReserva = 0;
 
-    public ReservaBungalo(Bungalo b, Cliente c){
+    public ReservaBungalo(Bungalo b, Cliente c, Date fecha_inicio, Date fecha_fin){
+        super(fecha_inicio, fecha_fin);
         id = calcular_id();
         bungalo = b;
         cliente = c;
@@ -32,5 +34,12 @@ public class ReservaBungalo extends Reserva{
         id = "R" + numReserva;
         return id;
     }
+    public boolean validar_fecha(Reserva r){
+        if(super.getFechaInicio().after(r.getFechaInicio()) || super.getFechaFin().before(r.getFechaFin())){
+            return false;
+        }
+        else{return true;}
+        }
+
 
 }
