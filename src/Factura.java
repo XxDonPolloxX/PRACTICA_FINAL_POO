@@ -17,11 +17,12 @@ public class Factura {
         numFactura += 1;
 
     }
+    public String getId(){return id;}
     public String calcular_id(){
         String id, idf = "";
         int i;
         id = Integer.toString(numFactura);
-        for (i=0;i<id.length();i++){
+        for (i=0;i<8-id.length();i++){
             idf = idf + "0";
         }
         idf = idf + id;

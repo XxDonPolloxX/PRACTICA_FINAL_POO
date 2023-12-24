@@ -5,9 +5,12 @@ public class Main {
         // Press Alt+Intro with your caret at the highlighted text to see how
         // IntelliJ IDEA suggests fixing it.
 
-        GestorBungalos g = new GestorBungalos();
-        g.agregar_bungalo();
-        g.agregar_bungalo();
-        g.recuperar_bungalo("BA0");
+       GestorClientes g = new GestorClientes();
+       g.agregarCliente();
+       g.agregarCliente();
+       g.agregarCliente();
+       g.listarClientes();
+       g.recuperarCliente("123");
+
     }
 }
