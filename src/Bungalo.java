@@ -33,6 +33,7 @@ public class Bungalo {
     public int getNumBungalo(){
         return numBungalo;
     }
+    public ReservaBungalo getReserva_0(){return reserva_0;}
     public String calcular_id(){
         String id;
         id =  "B" + numBungalo;

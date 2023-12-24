@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 
@@ -85,6 +86,67 @@ public class GestorBungalos {
                 }
             }
         return cadena_bungalos;
+        }
+        public void agregarReserva(){
+            int i;
+            int personas;
+            String opcion;
+            String id, DNI;
+            ArrayList<Bungalo> bungalosDisponibles = new ArrayList<Bungalo>();
+            Date fechaInicio = null, fechaFin = null;
+            System.out.println("¿Desea reservar un bungalo adaptado (s/n)?");
+            opcion = MyInput.readString();
+            System.out.println("Introduzca el DNI del cliente");
+            DNI = MyInput.readString();
+            System.out.println("Introduzca el día de comienzo de la reserva:");
+            fechaInicio.setDate(MyInput.readInt());
+            System.out.println("Introduzca el mes de comienzo de la reserva:");
+            fechaInicio.setMonth(MyInput.readInt());
+            System.out.println("Introduzca el año de comienzo de la reserva:");
+            fechaInicio.setYear(MyInput.readInt());
+            System.out.println("Introduzca el día de fin de la reserva:");
+            fechaFin.setDate(MyInput.readInt());
+            System.out.println("Introduzca el mes de fin de la reserva:");
+            fechaFin.setMonth(MyInput.readInt());
+            System.out.println("Introduzca el año de fin de la reserva:");
+            fechaFin.setYear(MyInput.readInt());
+            System.out.println("Introduzca el número de personas");
+            personas = MyInput.readInt();
+            System.out.println("Estos son los bungalos disponibles:");
+            if(opcion.equalsIgnoreCase("s")){
+                for(i=0;i<bungalos.size();i++){
+                    if(bungalos.get(i).getId().substring(0,2).equals("BA")){
+                        if(bungalos.get(i).getCapacidad() >= personas){
+                            System.out.println(bungalos.get(i).getId());
+                            bungalosDisponibles.add(bungalos.get(i));
+                        }
+                    }
+                }
+            }
+            else{
+                for(i=0;i<bungalos.size();i++){
+                    if(! bungalos.get(i).getId().substring(0,2).equals("BA")){
+                        if(bungalos.get(i).getCapacidad() >= personas){
+                            System.out.println(bungalos.get(i).getId());
+                            bungalosDisponibles.add(bungalos.get(i));
+                        }
+                    }
+                }
+            }
+            if(bungalosDisponibles.isEmpty()){
+                System.out.println("No hay ningún bungalo disponible");
+            }
+            else{
+                System.out.println("Seleccione el id del bungalo:");
+                id = MyInput.readString();
+                for(i=0;i<bungalosDisponibles.size();i++){
+                    if(bungalosDisponibles.get(i).getId().equals(id)){
+                        bungalosDisponibles.get(i).getReserva_0().getActividades().add(new ReservaBungalo(bungalosDisponibles.get(i), DNI,fechaInicio, fechaFin));
+                    }
+                }
+            }
+
+
         }
 
 

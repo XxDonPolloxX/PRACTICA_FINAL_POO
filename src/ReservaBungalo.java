@@ -5,14 +5,14 @@ public class ReservaBungalo extends Reserva{
     private Bungalo bungalo;
     private ArrayList<Reserva> actividades;
     private String id;
-    private Cliente cliente;
+    private String cliente;
     private static int numReserva = 0;
 
-    public ReservaBungalo(Bungalo b, Cliente c, Date fecha_inicio, Date fecha_fin){
+    public ReservaBungalo(Bungalo b, String DNI, Date fecha_inicio, Date fecha_fin){
         super(fecha_inicio, fecha_fin);
         id = calcular_id();
         bungalo = b;
-        cliente = c;
+        cliente = DNI;
         actividades = new ArrayList<Reserva>();
         numReserva += 1;
     }
@@ -22,7 +22,7 @@ public class ReservaBungalo extends Reserva{
     public Bungalo getBungalo(){
         return bungalo;
     }
-    public Cliente getCliente(){
+    public String getCliente(){
         return cliente;
     }
     public ArrayList<Reserva> getActividades(){
