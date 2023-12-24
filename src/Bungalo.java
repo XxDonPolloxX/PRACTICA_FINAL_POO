@@ -15,7 +15,7 @@ public class Bungalo {
         this.capacidad = capacidad;
         this.precio = precio;
         this.reserva_0 = new ReservaBungalo(this, null, null, null);
-        if(nombre != ""){numBungalo += 1;}
+        numBungalo += 1;
     }
 
     public String getId() {
@@ -29,6 +29,9 @@ public class Bungalo {
     }
     public float getPrecio(){
         return precio;
+    }
+    public int getNumBungalo(){
+        return numBungalo;
     }
     public String calcular_id(){
         String id;

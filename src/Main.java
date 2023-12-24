@@ -8,10 +8,12 @@ public class Main {
         Restaurante r = new Restaurante("rrrr", 324);
         System.out.println(a.getId());
         System.out.println(r.getId());
-        Bungalo b = new Bungalo("Paco bungalos", 1, 1);
+        Bungalo b = new BungaloAdaptado("Paco bungalos", 1, 1);
         System.out.println(b.getNombre());
         ServicioCatering prueba = new ServicioCatering(new ServicioAsistente(b));
         System.out.println(prueba.getNombre());
+        System.out.println(b.getId());
+        System.out.println(prueba.getId());
 
     }
 }

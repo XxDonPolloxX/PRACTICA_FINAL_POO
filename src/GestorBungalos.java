@@ -12,6 +12,7 @@ public class GestorBungalos {
         return bungalos;
     }
     public void agregar_bungalo(Bungalo b){
+
         bungalos.add(b);
         System.out.println("Bungalo " + b.getId() +  " añadido con éxito!");
     }
