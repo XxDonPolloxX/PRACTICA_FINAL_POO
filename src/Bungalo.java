@@ -1,7 +1,9 @@
 import javax.management.StringValueExp;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class Bungalo {
-    private Reserva reserva_0; // Es una instancia de reserva para poder pillar todas las reservas del bungalo
+    private ReservaBungalo reserva_0; // Es una instancia de reserva para poder pillar todas las reservas del bungalo
     private String id;
     private String nombre;
     private int capacidad;
@@ -12,7 +14,8 @@ public class Bungalo {
         this.nombre = nombre;
         this.capacidad = capacidad;
         this.precio = precio;
-        numBungalo += 1;
+        this.reserva_0 = new ReservaBungalo(this, null, null, null);
+        if(nombre != ""){numBungalo += 1;}
     }
 
     public String getId() {
