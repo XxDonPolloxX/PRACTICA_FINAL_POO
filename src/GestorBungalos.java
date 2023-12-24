@@ -54,7 +54,7 @@ public class GestorBungalos {
         {
             if(bungalos.get(i).getId().equals(id)) {
                 System.out.println("Nombre: " + bungalos.get(i).getNombre());
-                System.out.println("Precio: " + bungalos.get(i).getPrecio());
+                System.out.println("Precio: " + bungalos.get(i).getPrecio() + " €");
                 System.out.println("Capacidad: " + bungalos.get(i).getCapacidad());
                 return bungalos.get(i);
                 }
