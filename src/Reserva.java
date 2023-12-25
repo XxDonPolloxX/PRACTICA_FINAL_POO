@@ -15,4 +15,6 @@ public class Reserva {
     public ArrayList<Reserva> getActividades(){
         return null;
     }
+    public Actividad getActividad(){return null;}
+    public String getCliente(){return "";}
 }

@@ -8,6 +8,7 @@ public class ReservaActividad extends Reserva{
         actividad = a;
         num_participantes = participantes;
     }
+    public Actividad getActividad(){return actividad;}
 
     public boolean validar_fecha_restaurante(){ //Esta funcion la utilizaremos en añadir actividad, si devuelve false no se añade (se pone en null)
         if(actividad.getId().substring(0, 1) == "AR") {
@@ -18,4 +19,5 @@ public class ReservaActividad extends Reserva{
         }
         else {return true;}
     }
+
 }

@@ -14,6 +14,8 @@ public class Main {
         gb.agregarReserva();
         ga.agregarActividad();
         gb.agregarActividad();
+        gb.listarReservasBungalo();
+        gb.listarReservaDNI();
 
 
     }

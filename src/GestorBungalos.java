@@ -247,7 +247,82 @@ public class GestorBungalos {
         }
         }
         public void eliminarReservaActividad(){
+        int i, j, k;
+        String id;
+            System.out.println("Reservas disponibles:");
+            for(i=0;i<bungalos.size();i++){
+                if(!bungalos.get(i).getReserva_0().getActividades().isEmpty()){
+                    for(j=0;j<bungalos.get(i).getReserva_0().getActividades().size();j++){
+                        if(!bungalos.get(i).getReserva_0().getActividades().get(j).getActividades().isEmpty()){
+                            System.out.println(bungalos.get(i).getReserva_0().getActividades().get(j).getId() + ":");
+                            System.out.println();
+                            for(k=0;k<bungalos.get(i).getReserva_0().getActividades().get(j).getActividades().size();k++){
+                                System.out.println(bungalos.get(i).getReserva_0().getActividades().get(j).getActividades().get(k).getActividad().getId());
+                            }
+                            System.out.println();
+                        }
 
+                    }
+                }
+            }
+            System.out.println("Introduzca la reserva con la actividad a cancelar:");
+            id = MyInput.readString();
+            for(i=0;i<bungalos.size();i++){
+                for(j=0;j<bungalos.get(i).getReserva_0().getActividades().size();j++){
+                    if(bungalos.get(i).getReserva_0().getActividades().get(j).getId().equals(id)){
+                        System.out.println("Introduzca la actividad que desea cancelar:");
+                        id = MyInput.readString();
+                        for(k=0;k<bungalos.get(i).getReserva_0().getActividades().get(j).getActividades().size();k++){
+                            if(bungalos.get(i).getReserva_0().getActividades().get(j).getActividades().get(k).getActividad().getId().equals(id)){
+                                bungalos.get(i).getReserva_0().getActividades().get(j).getActividades().remove(k);
+                                System.out.println("Actividad cancelada con éxito");
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        }
+        public void listarReservasBungalo(){
+        int i, j;
+        String id;
+        boolean flagBungalo = false;
+        Bungalo b = null;
+        System.out.println("Introduzca el id del bungalo:");
+        id = MyInput.readString();
+        for(i=0;i<bungalos.size();i++){
+            if(bungalos.get(i).getId().equals(id)){
+                b = bungalos.get(i);
+                flagBungalo = true;
+                if(b.getReserva_0().getActividades().isEmpty()){
+                    System.out.println("El bungalo no tiene reservas");
+                }
+                else{
+                    for(j=0;j<b.getReserva_0().getActividades().size();j++){
+                        System.out.println(b.getReserva_0().getActividades().get(j).getId());
+                    }
+                }
+
+            }
+        }
+        if(!flagBungalo){
+            System.out.println("El bungalo no se ha encontrado");
+        }
+        }
+
+        public void listarReservaDNI(){
+        int i, j;
+        String DNI;
+        System.out.println("Introduzca el DNI del cliente:");
+        DNI = MyInput.readString();
+        for(i=0;i<bungalos.size();i++){
+            for(j=0;j<bungalos.get(i).getReserva_0().getActividades().size();j++){
+                if(bungalos.get(i).getReserva_0().getActividades().get(j).getCliente().equals(DNI)){
+                    System.out.println(bungalos.get(i).getReserva_0().getActividades().get(j).getId());
+                }
+            }
+        }
         }
 
 
