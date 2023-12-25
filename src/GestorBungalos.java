@@ -166,7 +166,7 @@ public class GestorBungalos {
         public void eliminarReserva(){
         int i, j;
         String id;
-        Bungalo b;
+        Bungalo b = null;
         System.out.println("Introduce el id del bungalo del que se quiere eliminar la reserva:");
         id = MyInput.readString();
         for(i=0;i<bungalos.size();i++){
@@ -180,6 +180,12 @@ public class GestorBungalos {
         }
         System.out.println("Introduzca el id de la reserva que se quiere cancelar:");
         id = MyInput.readString();
+        for(i=0;i<b.getReserva_0().getActividades().size();i++){
+            if(b.getReserva_0().getActividades().get(i).getId().equals(id)){
+                b.getReserva_0().getActividades().remove(i);
+                System.out.println("Reserva " + id + " cancelada con éxito");
+            }
+        }
 
         }
 
