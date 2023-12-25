@@ -199,9 +199,15 @@ public class GestorBungalos {
         Date fechaInicio = new Date(), fechaFin = new Date();
         System.out.println("Reservas disponibles:");
         for(i=0;i<bungalos.size();i++){
+            if(!bungalos.get(i).getReserva_0().getActividades().isEmpty()){
+                System.out.println(bungalos.get(i).getId() + ":");
+                System.out.println();
+            }
+
             for(j=0;j<bungalos.get(i).getReserva_0().getActividades().size();j++){
                 System.out.println(bungalos.get(i).getReserva_0().getActividades().get(j).getId());
             }
+            System.out.println();
         }
         System.out.println("Introduzca el id de la reserva a la que quiere añadir una actividad");
         id = MyInput.readString();
@@ -239,6 +245,9 @@ public class GestorBungalos {
                 System.out.println("Reserva de la actividad " + a.getId() + " realizada con éxito");
             }
         }
+        }
+        public void eliminarReservaActividad(){
+
         }
 
 
