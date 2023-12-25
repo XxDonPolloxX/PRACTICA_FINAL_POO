@@ -197,6 +197,12 @@ public class GestorBungalos {
         Bungalo b = null;
         Actividad a = null;
         Date fechaInicio = new Date(), fechaFin = new Date();
+        System.out.println("Reservas disponibles:");
+        for(i=0;i<bungalos.size();i++){
+            for(j=0;j<bungalos.get(i).getReserva_0().getActividades().size();j++){
+                System.out.println(bungalos.get(i).getReserva_0().getActividades().get(j).getId());
+            }
+        }
         System.out.println("Introduzca el id de la reserva a la que quiere añadir una actividad");
         id = MyInput.readString();
         System.out.println("Introduzca el número de participantes:");
@@ -215,7 +221,7 @@ public class GestorBungalos {
         fechaFin.setYear(MyInput.readInt());
         for(i=0;i<bungalos.size();i++){
             for(j=0;j<bungalos.get(i).getReserva_0().getActividades().size();j++){
-                if(bungalos.get(i).getReserva_0().getActividades().get(i).getId().equals(id)){
+                if(bungalos.get(i).getReserva_0().getActividades().get(j).getId().equals(id)){
                     r = bungalos.get(i).getReserva_0().getActividades().get(i);
                 }
             }
