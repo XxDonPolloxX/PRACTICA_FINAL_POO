@@ -46,8 +46,13 @@ public class GestorBungalos {
         id = MyInput.readString();
         for(i=0;i<bungalos.size();i++){
             if(id.equals(bungalos.get(i).getId())){
-                System.out.println("Bungalo " + bungalos.get(i).getId() +  " eliminado con éxito!");
-                bungalos.remove(bungalos.get(i));
+                if(bungalos.get(i).getReserva_0().getActividades().isEmpty()){
+                    System.out.println("Bungalo " + bungalos.get(i).getId() +  " eliminado con éxito!");
+                    bungalos.remove(bungalos.get(i));
+                }
+                else{
+                    System.out.println("Error: No se puede eliminar un bungalo con reservas");
+                }
 
             }
         }
