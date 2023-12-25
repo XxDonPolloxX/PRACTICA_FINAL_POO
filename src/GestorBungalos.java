@@ -353,6 +353,16 @@ public class GestorBungalos {
 
         }
         }
+        public Factura generarFactura(){
+        return null;
+
+        }
+        public void mostrarFacturasCliente(){
+
+        }
+        public void datosFactura(){
+
+        }
 
 
 
