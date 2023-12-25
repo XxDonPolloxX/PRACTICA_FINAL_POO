@@ -10,11 +10,16 @@ public class ReservaBungalo extends Reserva{
 
     public ReservaBungalo(Bungalo b, String DNI, Date fecha_inicio, Date fecha_fin){
         super(fecha_inicio, fecha_fin);
-        id = calcular_id();
+        if(DNI == null){
+            id = "";
+        }
+        else{
+            id = calcular_id();
+            numReserva += 1;
+        }
         bungalo = b;
         cliente = DNI;
         actividades = new ArrayList<Reserva>();
-        numReserva += 1;
     }
     public String getId(){
         return id;

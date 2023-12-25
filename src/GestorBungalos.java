@@ -190,6 +190,50 @@ public class GestorBungalos {
         }
 
         }
+        public void agregarActividad(){
+        int i, j, participantes;
+        String id;
+        Reserva r = null;
+        Bungalo b = null;
+        Actividad a = null;
+        Date fechaInicio = new Date(), fechaFin = new Date();
+        System.out.println("Introduzca el id de la reserva a la que quiere añadir una actividad");
+        id = MyInput.readString();
+        System.out.println("Introduzca el número de participantes:");
+        participantes = MyInput.readInt();
+        System.out.println("Introduzca el día de comienzo de la reserva:");
+        fechaInicio.setDate(MyInput.readInt());
+        System.out.println("Introduzca el mes de comienzo de la reserva:");
+        fechaInicio.setMonth(MyInput.readInt());
+        System.out.println("Introduzca el año de comienzo de la reserva:");
+        fechaInicio.setYear(MyInput.readInt());
+        System.out.println("Introduzca el día de fin de la reserva:");
+        fechaFin.setDate(MyInput.readInt());
+        System.out.println("Introduzca el mes de fin de la reserva:");
+        fechaFin.setMonth(MyInput.readInt());
+        System.out.println("Introduzca el año de fin de la reserva:");
+        fechaFin.setYear(MyInput.readInt());
+        for(i=0;i<bungalos.size();i++){
+            for(j=0;j<bungalos.get(i).getReserva_0().getActividades().size();j++){
+                if(bungalos.get(i).getReserva_0().getActividades().get(i).getId().equals(id)){
+                    r = bungalos.get(i).getReserva_0().getActividades().get(i);
+                }
+            }
+        }
+        System.out.println("Actividades disponibles:");
+        for(i=0;i<actividades.getActividades().size();i++){
+            System.out.println(actividades.getActividades().get(i).getId() + ": " + actividades.getActividades().get(i).getDescripcion());
+        }
+        System.out.println("Introduzca el id de la actividad");
+        id = MyInput.readString();
+        for(i=0;i<actividades.getActividades().size();i++){
+            if(actividades.getActividades().get(i).getId().equals(id)){
+                a = actividades.getActividades().get(i);
+                r.getActividades().add(new ReservaActividad(a, participantes, fechaInicio, fechaFin));
+                System.out.println("Reserva de la actividad " + a.getId() + " realizada con éxito");
+            }
+        }
+        }
 
 
 

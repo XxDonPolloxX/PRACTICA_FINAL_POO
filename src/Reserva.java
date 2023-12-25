@@ -12,4 +12,7 @@ public class Reserva {
     public Date getFechaInicio(){return fechaInicio;}
     public Date getFechaFin(){return  fechaFin;}
     public String getId(){return null;}
+    public ArrayList<Reserva> getActividades(){
+        return null;
+    }
 }
