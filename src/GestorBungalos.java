@@ -324,6 +324,30 @@ public class GestorBungalos {
             }
         }
         }
+        public void infoReserva(){
+        int i, j, k;
+        String id;
+        Reserva r = null;
+        System.out.println("Introduzca el id de la reserva:");
+        id = MyInput.readString();
+        for(i=0;i<bungalos.size();i++){
+            for(j=0;j<bungalos.get(i).getReserva_0().getActividades().size();j++)
+            {
+                if(bungalos.get(i).getReserva_0().getActividades().get(j).getId().equals(id)){
+                    r = bungalos.get(i).getReserva_0().getActividades().get(j);
+                    System.out.println("ID: " + r.getId() + " Cliente: " + r.getCliente() + " Fecha inicio: "+ r.getFechaInicio() + " Fecha fin: " + r.getFechaFin());
+                    if(!r.getActividades().isEmpty()){
+                        System.out.println("Actividades reservadas: ");
+                        for(k=0;k<r.getActividades().size();k++){
+                            System.out.println(r.getActividades().get(k).getActividad().getId());
+                        }
+                    }
+
+                }
+            }
+
+        }
+        }
 
 
 
