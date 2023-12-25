@@ -6,10 +6,12 @@ import java.util.Scanner;
 public class GestorBungalos {
     private ArrayList<Bungalo> bungalos;
     private GestorClientes listaClientes;
+    private GestorActividades actividades;
 
-    public GestorBungalos(GestorClientes clientes) {
+    public GestorBungalos(GestorClientes clientes, GestorActividades actividades) {
         this.bungalos = new ArrayList<Bungalo>();
         this.listaClientes = clientes;
+        this.actividades = actividades;
     }
     public ArrayList<Bungalo> getBungalos(){
         return bungalos;

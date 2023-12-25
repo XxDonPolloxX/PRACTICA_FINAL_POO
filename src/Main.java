@@ -5,12 +5,7 @@ public class Main {
         // Press Alt+Intro with your caret at the highlighted text to see how
         // IntelliJ IDEA suggests fixing it.
 
-       GestorClientes gc = new GestorClientes();
-       GestorBungalos gb = new GestorBungalos(gc);
-       gc.agregarCliente();
-       gb.agregar_bungalo();
-       gb.agregarReserva();
-       gb.agregarReserva();
+
 
     }
 }
