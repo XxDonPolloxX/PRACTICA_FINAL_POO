@@ -6,7 +6,7 @@ public class GestorGeneralSingleton {
     private GestorGeneralSingleton(){
         clientes = new GestorClientes();
         actividades = new GestorActividades();
-        bungalos = new GestorBungalos();
+        bungalos = new GestorBungalos(clientes);
         instance = this;
     }
     public GestorGeneralSingleton ObtenerInstancia(){

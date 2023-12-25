@@ -5,10 +5,12 @@ public class Main {
         // Press Alt+Intro with your caret at the highlighted text to see how
         // IntelliJ IDEA suggests fixing it.
 
-       GestorActividades g = new GestorActividades();
-       g.agregarActividad();
-       g.agregarActividad();
-       g.recuperarActividad("A0");
+       GestorClientes gc = new GestorClientes();
+       GestorBungalos gb = new GestorBungalos(gc);
+       gc.agregarCliente();
+       gb.agregar_bungalo();
+       gb.agregarReserva();
+       gb.agregarReserva();
 
     }
 }
