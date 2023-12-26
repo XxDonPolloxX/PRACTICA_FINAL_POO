@@ -1,8 +1,9 @@
 import javax.management.StringValueExp;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class Bungalo {
+public class Bungalo implements Serializable {
     private ReservaBungalo reserva_0; // Es una instancia de reserva para poder pillar todas las reservas del bungalo
     private String id;
     private String nombre;

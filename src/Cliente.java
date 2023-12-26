@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Cliente {
+public class Cliente implements java.io.Serializable{
     private ArrayList<Factura> facturas;
     private String nombre;
     private String id;

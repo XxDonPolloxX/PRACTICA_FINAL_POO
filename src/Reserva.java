@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Reserva {
+public class Reserva implements java.io.Serializable{
     private Date fechaInicio;
     private Date fechaFin;
     private ArrayList<Reserva> reservas;

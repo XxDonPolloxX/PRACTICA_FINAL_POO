@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GestorActividades {
+public class GestorActividades implements Serializable {
     private ArrayList<Actividad> actividades;
     public GestorActividades(){
         actividades = new ArrayList<Actividad>();
@@ -31,5 +32,34 @@ public class GestorActividades {
                 System.out.println("Precio: " + actividades.get(i).getPrecio() + " €");
             }
         }
+    }
+    public void menuActividades(){
+        String s;
+        do{
+            System.out.println("¿Qué desea hacer?");
+            System.out.println("1. Agregar actividad");
+            System.out.println("2. Listar actividades");
+            System.out.println("3. Recuperar actividad");
+            System.out.println("4. Volver al menú principal");
+            s = MyInput.readString();
+            switch(s){
+                case "1":
+                    agregarActividad();
+                    break;
+                case "2":
+                    listarActividades();
+                    break;
+                case "3":
+                    System.out.println("Introduzca el id de la actividad:");
+                    s = MyInput.readString();
+                    recuperarActividad(s);
+                    break;
+                case "4":
+                    break;
+                default:
+                    System.out.println("Opción no válida");
+                    break;
+            }
+        }while(!s.equals("4"));
     }
 }

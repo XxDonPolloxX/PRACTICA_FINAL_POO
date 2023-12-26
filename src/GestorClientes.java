@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GestorClientes {
+public class GestorClientes implements Serializable {
     private ArrayList<Cliente> clientes;
     public GestorClientes(){
         clientes = new ArrayList<Cliente>();
@@ -39,15 +40,44 @@ public class GestorClientes {
             System.out.println(clientes.get(i).getNombre() + ": " + clientes.get(i).getId());
         }
     }
-    public void recuperarCliente(String dni){
+    public void recuperarCliente(){
         int i;
+        String DNI;
+        System.out.println("Introduzca el DNI del cliente:");
+        DNI = MyInput.readString();
         for(i=0;i<clientes.size();i++){
-            if(clientes.get(i).getId().equals(dni)){
+            if(clientes.get(i).getId().equals(DNI)){
                 System.out.println("DNI: " + clientes.get(i).getId());
                 System.out.println("Nombre: " + clientes.get(i).getNombre());
                 System.out.println("Teléfono: " + clientes.get(i).getTelefono());
             }
         }
     }
-
+    public void menuClientes(){
+        String s;
+        do{
+            System.out.println("¿Qué desea hacer?");
+            System.out.println("1. Agregar cliente");
+            System.out.println("2. Listar clientes");
+            System.out.println("3. Recuperar cliente");
+            System.out.println("4. Volver al menú principal");
+            s = MyInput.readString();
+            switch(s){
+                case "1":
+                    agregarCliente();
+                    break;
+                case "2":
+                    listarClientes();
+                    break;
+                case "3":
+                    recuperarCliente();
+                    break;
+                case "4":
+                    break;
+                default:
+                    System.out.println("Opción no válida");
+                    break;
+            }
+        }while(!s.equals("4"));
+    }
 }

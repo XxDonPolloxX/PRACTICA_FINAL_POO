@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class GestorFacturas {
+public class GestorFacturas implements Serializable {
     private GestorClientes clientes;
     private GestorBungalos bungalos;
     private ArrayList<Factura> facturas;
@@ -71,5 +72,32 @@ public class GestorFacturas {
         System.out.println(f.getFechaFacturacion());
 
 
+    }
+    public void menuFacturas(){
+        String s;
+        do{
+            System.out.println("¿Qué desea hacer?");
+            System.out.println("1. Generar factura");
+            System.out.println("2. Mostrar facturas de un cliente");
+            System.out.println("3. Mostrar datos de una factura");
+            System.out.println("4. Volver al menú principal");
+            s = MyInput.readString();
+            switch(s){
+                case "1":
+                    generarFactura();
+                    break;
+                case "2":
+                    mostrarFacturasCliente();
+                    break;
+                case "3":
+                    datosFactura();
+                    break;
+                case "4":
+                    break;
+                default:
+                    System.out.println("Opción no válida");
+                    break;
+            }
+        }while(!s.equals("4"));
     }
 }

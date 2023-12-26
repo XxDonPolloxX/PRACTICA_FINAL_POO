@@ -1,4 +1,6 @@
-public class Actividad {
+import java.io.Serializable;
+
+public class Actividad implements Serializable {
     private String id;
     private String descripcion;
     private float precio;

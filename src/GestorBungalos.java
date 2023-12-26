@@ -1,9 +1,10 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
 
-public class GestorBungalos {
+public class GestorBungalos implements Serializable {
     private ArrayList<Bungalo> bungalos;
     private GestorClientes listaClientes;
     private GestorActividades actividades;
@@ -58,8 +59,11 @@ public class GestorBungalos {
         }
 
     }
-    public Bungalo recuperar_bungalo(String id){
+    public Bungalo recuperar_bungalo(){
         int i;
+        String id;
+        System.out.println("Introduzca el id del bungalo:");
+        id = MyInput.readString();
         for(i=0;i<bungalos.size();i++)
         {
             if(bungalos.get(i).getId().equals(id)) {
@@ -179,9 +183,9 @@ public class GestorBungalos {
         for(i=0;i<bungalos.size();i++){
             if(bungalos.get(i).getId().equals(id)){
                 b = bungalos.get(i);
-                System.out.println("Reservas disponibles del bungalo:");
-                for(j=0;j<b.getReserva_0().getActividades().size();i++){
-                    System.out.println(b.getReserva_0().getActividades().get(i).getId());
+                System.out.println("Reservas disponibles del bungalo " + b.getId() + ":");
+                for(j=0;j<b.getReserva_0().getActividades().size();j++){
+                    System.out.println(b.getReserva_0().getActividades().get(j).getId());
                 }
             }
         }
@@ -353,10 +357,86 @@ public class GestorBungalos {
 
         }
         }
+        public void menuBungalos(){
+            String s;
+            do{
+                System.out.println("¿Qué desea hacer?");
+                System.out.println("1. Agregar bungalo");
+                System.out.println("2. Eliminar bungalo");
+                System.out.println("3. Listar bungalos");
+                System.out.println("4. Mostrar información bungalo concreto");
+                System.out.println("5. Volver al menú principal");
+                s = MyInput.readString();
+                switch(s){
+                    case "1":
+                        agregar_bungalo();
+                        break;
+                    case "2":
+                        eliminar_bungalo();
+                        break;
+                    case "3":
+                        System.out.println(mostrarBungalos());
+                        break;
+                    case "4":
+                        recuperar_bungalo();
+                        break;
+                    case "5":
+                        break;
+                    default:
+                        System.out.println("Opción no válida");
+                        break;
+                }
+            }while(!s.equals("5"));
+        }
+        public void menuReservas(){
+    String s;
+            do{
+                System.out.println("¿Qué desea hacer?");
+                System.out.println("1. Agregar reserva");
+                System.out.println("2. Eliminar reserva");
+                System.out.println("3. Listar reservas de un bungalo");
+                System.out.println("4. Listar reservas de un cliente");
+                System.out.println("5. Mostrar información de una reserva");
+                System.out.println("6. Añadir actividad a una reserva");
+                System.out.println("7. Eliminar actividad de una reserva");
+                System.out.println("8. Volver al menú principal");
+                s = MyInput.readString();
+                switch(s){
+                    case "1":
+                        agregarReserva();
+                        break;
+                    case "2":
+                        eliminarReserva();
+                        break;
+                    case "3":
+                        listarReservasBungalo();
+                        break;
+                    case "4":
+                        listarReservaDNI();
+                        break;
+                    case "5":
+                        infoReserva();
+                        break;
+                    case "6":
+                        agregarActividad();
+                        break;
+                    case "7":
+                        eliminarReservaActividad();
+                        break;
+                    case "8":
+                        break;
+                    default:
+                        System.out.println("Opción no válida");
+                        break;
+                }
+            }while(!s.equals("8"));
+
+        }
+        }
 
 
 
 
-    }
+
 
 
