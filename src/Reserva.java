@@ -17,4 +17,5 @@ public class Reserva {
     }
     public Actividad getActividad(){return null;}
     public String getCliente(){return "";}
+    public float getPrecio(){return 0;}
 }

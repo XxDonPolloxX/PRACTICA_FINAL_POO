@@ -19,5 +19,8 @@ public class ReservaActividad extends Reserva{
         }
         else {return true;}
     }
+    public float getPrecio(){
+        return actividad.getPrecio();
+    }
 
 }

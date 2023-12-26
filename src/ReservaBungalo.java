@@ -45,6 +45,14 @@ public class ReservaBungalo extends Reserva{
         }
         else{return true;}
         }
-
+    public float getPrecio(){
+        int i;
+        float precio;
+        precio = bungalo.getPrecio();
+        for(i=0;i<actividades.size();i++){
+            precio += actividades.get(i).getPrecio();
+        }
+        return precio;
+    }
 
 }
