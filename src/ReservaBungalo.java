@@ -7,16 +7,14 @@ public class ReservaBungalo extends Reserva{
     private ArrayList<Reserva> actividades;
     private String id;
     private String cliente;
-    private static int numReserva = 0;
 
-    public ReservaBungalo(Bungalo b, String DNI, LocalDate fecha_inicio, LocalDate fecha_fin){
+    public ReservaBungalo(Bungalo b, String DNI, LocalDate fecha_inicio, LocalDate fecha_fin, int num){
         super(fecha_inicio, fecha_fin);
         if(DNI == null){
             id = "";
         }
         else{
-            id = calcular_id();
-            numReserva += 1;
+            id = "R" + num;
         }
         bungalo = b;
         cliente = DNI;
@@ -35,11 +33,7 @@ public class ReservaBungalo extends Reserva{
         return  actividades;
     }
 
-    public String calcular_id(){
-        String id;
-        id = "R" + numReserva;
-        return id;
-    }
+
     public boolean validar_fecha(Reserva r){
         if(super.getFechaInicio().isAfter(r.getFechaInicio()) || super.getFechaFin().isBefore(r.getFechaFin())){
             return false;

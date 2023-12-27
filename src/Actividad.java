@@ -4,9 +4,8 @@ public class Actividad implements Serializable {
     private String id;
     private String descripcion;
     private float precio;
-    private static int numActividad = 0;
-    public Actividad( String descripcion, float precio){
-        this.id = calcular_id();
+    public Actividad( String descripcion, float precio, int numActividad){
+        this.id = "A" + numActividad;
         this.descripcion = descripcion;
         this.precio = precio;
         numActividad += 1;
@@ -20,9 +19,5 @@ public class Actividad implements Serializable {
     public float getPrecio(){
         return precio;
     }
-    public String calcular_id(){
-        String id;
-        id = "A" + numActividad;
-        return id;
-    }
+
 }

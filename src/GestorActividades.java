@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class GestorActividades implements Serializable {
     private ArrayList<Actividad> actividades;
+    private int numeroActividades;
     public GestorActividades(){
         actividades = new ArrayList<Actividad>();
     }
@@ -14,7 +15,8 @@ public class GestorActividades implements Serializable {
         descripcion = MyInput.readString();
         System.out.println("Introduzca el precio de la actividad: ");
         precio = MyInput.readFloat();
-        actividades.add(new Actividad(descripcion, precio));
+        actividades.add(new Actividad(descripcion, precio, numeroActividades));
+        numeroActividades += 1;
         System.out.println("La actividad: " + actividades.getLast().getId() + " se ha añadido con éxito");
     }
     public void listarActividades(){

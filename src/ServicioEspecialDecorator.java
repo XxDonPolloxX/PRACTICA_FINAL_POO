@@ -1,7 +1,7 @@
 public class ServicioEspecialDecorator extends BungaloAdaptado{
     private Bungalo bungalo;
     public ServicioEspecialDecorator(Bungalo b){
-        super("",0,0);
+        super("",0,0, 0);
         bungalo = b;
     }
     public String getNombre(){return bungalo.getNombre();}

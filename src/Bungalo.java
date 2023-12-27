@@ -9,14 +9,12 @@ public class Bungalo implements Serializable {
     private String nombre;
     private int capacidad;
     private float precio;
-    private static int numBungalo;
-    public Bungalo(String nombre, int capacidad, float precio){
-        this.id = calcular_id();
+    public Bungalo(String nombre, int capacidad, float precio, int num){
+        this.id = calcular_id(num);
         this.nombre = nombre;
         this.capacidad = capacidad;
         this.precio = precio;
-        this.reserva_0 = new ReservaBungalo(this, null, null, null);
-        numBungalo += 1;
+        this.reserva_0 = new ReservaBungalo(this, null, null, null, 0);
     }
 
     public String getId() {
@@ -31,13 +29,10 @@ public class Bungalo implements Serializable {
     public float getPrecio(){
         return precio;
     }
-    public int getNumBungalo(){
-        return numBungalo;
-    }
     public ReservaBungalo getReserva_0(){return reserva_0;}
-    public String calcular_id(){
+    public String calcular_id(int num){
         String id;
-        id =  "B" + numBungalo;
+        id =  "B" + num;
         return id;
     }
 
