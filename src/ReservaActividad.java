@@ -1,9 +1,10 @@
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ReservaActividad extends Reserva{
     private Actividad actividad;
     private int num_participantes;
-    public ReservaActividad(Actividad a, int participantes, Date inicio, Date fin){
+    public ReservaActividad(Actividad a, int participantes, LocalDate inicio, LocalDate fin){
         super(inicio, fin);
         actividad = a;
         num_participantes = participantes;

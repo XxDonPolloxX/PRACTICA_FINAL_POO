@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,7 +9,7 @@ public class ReservaBungalo extends Reserva{
     private String cliente;
     private static int numReserva = 0;
 
-    public ReservaBungalo(Bungalo b, String DNI, Date fecha_inicio, Date fecha_fin){
+    public ReservaBungalo(Bungalo b, String DNI, LocalDate fecha_inicio, LocalDate fecha_fin){
         super(fecha_inicio, fecha_fin);
         if(DNI == null){
             id = "";
@@ -40,7 +41,7 @@ public class ReservaBungalo extends Reserva{
         return id;
     }
     public boolean validar_fecha(Reserva r){
-        if(super.getFechaInicio().after(r.getFechaInicio()) || super.getFechaFin().before(r.getFechaFin())){
+        if(super.getFechaInicio().isAfter(r.getFechaInicio()) || super.getFechaFin().isBefore(r.getFechaFin())){
             return false;
         }
         else{return true;}

@@ -1,16 +1,17 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Reserva implements java.io.Serializable{
-    private Date fechaInicio;
-    private Date fechaFin;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
     private ArrayList<Reserva> reservas;
-    public Reserva(Date fecha_inicio, Date fecha_fin){
+    public Reserva(LocalDate fecha_inicio, LocalDate fecha_fin){
         fechaInicio = fecha_inicio;
         fechaFin = fecha_fin;
     }
-    public Date getFechaInicio(){return fechaInicio;}
-    public Date getFechaFin(){return  fechaFin;}
+    public LocalDate getFechaInicio(){return fechaInicio;}
+    public LocalDate getFechaFin(){return  fechaFin;}
     public String getId(){return null;}
     public ArrayList<Reserva> getActividades(){
         return null;

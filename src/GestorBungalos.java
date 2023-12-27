@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -105,25 +106,20 @@ public class GestorBungalos implements Serializable {
             boolean flagBungalo = false;
             int personas;
             String opcion;
-            String id, DNI;
+            String id, DNI, fechaInicioString, fechaFinString;
+            LocalDate fechaInicio;
+            LocalDate fechaFin;
             ArrayList<Bungalo> bungalosDisponibles = new ArrayList<Bungalo>();
-            Date fechaInicio = new Date(), fechaFin = new Date();
             System.out.println("¿Desea reservar un bungalo adaptado (s/n)?");
             opcion = MyInput.readString();
             System.out.println("Introduzca el DNI del cliente");
             DNI = MyInput.readString();
-            System.out.println("Introduzca el día de comienzo de la reserva:");
-            fechaInicio.setDate(MyInput.readInt());
-            System.out.println("Introduzca el mes de comienzo de la reserva:");
-            fechaInicio.setMonth(MyInput.readInt());
-            System.out.println("Introduzca el año de comienzo de la reserva:");
-            fechaInicio.setYear(MyInput.readInt());
-            System.out.println("Introduzca el día de fin de la reserva:");
-            fechaFin.setDate(MyInput.readInt());
-            System.out.println("Introduzca el mes de fin de la reserva:");
-            fechaFin.setMonth(MyInput.readInt());
-            System.out.println("Introduzca el año de fin de la reserva:");
-            fechaFin.setYear(MyInput.readInt());
+            System.out.println("Introduzca la fecha de comienzo de la reserva:");
+            fechaInicioString = MyInput.readString();
+            fechaInicio = LocalDate.parse(fechaInicioString);
+            System.out.println("Introduzca la fecha de fin de la reserva:");
+            fechaFinString = MyInput.readString();
+            fechaFin = LocalDate.parse(fechaFinString);
             System.out.println("Introduzca el número de personas");
             personas = MyInput.readInt();
             System.out.println("Estos son los bungalos disponibles:");
@@ -205,7 +201,8 @@ public class GestorBungalos implements Serializable {
         Reserva r = null;
         Bungalo b = null;
         Actividad a = null;
-        Date fechaInicio = new Date(), fechaFin = new Date();
+        LocalDate fechaInicio, fechaFin ;
+        String fechaInicioString, fechaFinString;
         System.out.println("Reservas disponibles:");
         for(i=0;i<bungalos.size();i++){
             if(!bungalos.get(i).getReserva_0().getActividades().isEmpty()){
@@ -222,18 +219,12 @@ public class GestorBungalos implements Serializable {
         id = MyInput.readString();
         System.out.println("Introduzca el número de participantes:");
         participantes = MyInput.readInt();
-        System.out.println("Introduzca el día de comienzo de la reserva:");
-        fechaInicio.setDate(MyInput.readInt());
-        System.out.println("Introduzca el mes de comienzo de la reserva:");
-        fechaInicio.setMonth(MyInput.readInt());
-        System.out.println("Introduzca el año de comienzo de la reserva:");
-        fechaInicio.setYear(MyInput.readInt());
-        System.out.println("Introduzca el día de fin de la reserva:");
-        fechaFin.setDate(MyInput.readInt());
-        System.out.println("Introduzca el mes de fin de la reserva:");
-        fechaFin.setMonth(MyInput.readInt());
-        System.out.println("Introduzca el año de fin de la reserva:");
-        fechaFin.setYear(MyInput.readInt());
+        System.out.println("Introduzca la fecha de comienzo de la reserva:");
+        fechaInicioString = MyInput.readString();
+        fechaInicio = LocalDate.parse(fechaInicioString);
+        System.out.println("Introduzca la fecha de fin de la reserva:");
+        fechaFinString = MyInput.readString();
+        fechaFin = LocalDate.parse(fechaFinString);
         for(i=0;i<bungalos.size();i++){
             for(j=0;j<bungalos.get(i).getReserva_0().getActividades().size();j++){
                 if(bungalos.get(i).getReserva_0().getActividades().get(j).getId().equals(id)){
