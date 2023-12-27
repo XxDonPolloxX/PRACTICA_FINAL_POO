@@ -102,7 +102,7 @@ public class GestorBungalos implements Serializable {
         return cadena_bungalos;
         }
         public void agregarReserva(){
-            int i;
+            int i, j;
             boolean flagBungalo = false;
             int personas;
             String opcion;
@@ -120,6 +120,10 @@ public class GestorBungalos implements Serializable {
             System.out.println("Introduzca la fecha de fin de la reserva:");
             fechaFinString = MyInput.readString();
             fechaFin = LocalDate.parse(fechaFinString);
+            if(fechaInicio.isAfter(fechaFin)){
+                System.out.println("La fecha de inicio no puede ser posterior a la fecha de fin");
+                return;
+            }
             System.out.println("Introduzca el número de personas");
             personas = MyInput.readInt();
             System.out.println("Estos son los bungalos disponibles:");
@@ -129,8 +133,13 @@ public class GestorBungalos implements Serializable {
                         for(i=0;i<bungalos.size();i++){
                             if(bungalos.get(i).getId().substring(0,2).equals("BA")){
                                 if(bungalos.get(i).getCapacidad() >= personas){
-                                    System.out.println(bungalos.get(i).getId());
-                                    bungalosDisponibles.add(bungalos.get(i));
+                                    for(j=0;j<bungalos.get(i).getReserva_0().getActividades().size();j++){
+                                        if(bungalos.get(i).getReserva_0().getActividades().get(j).getFechaInicio().isAfter(fechaFin) || bungalos.get(i).getReserva_0().getActividades().get(j).getFechaFin().isBefore(fechaInicio)){
+                                            System.out.println(bungalos.get(i).getId());
+                                            bungalosDisponibles.add(bungalos.get(i));
+                                        }
+                                    }
+
                                 }
                             }
                         }
@@ -139,8 +148,12 @@ public class GestorBungalos implements Serializable {
                         for(i=0;i<bungalos.size();i++){
                             if(! bungalos.get(i).getId().substring(0,2).equals("BA")){
                                 if(bungalos.get(i).getCapacidad() >= personas){
-                                    System.out.println(bungalos.get(i).getId());
-                                    bungalosDisponibles.add(bungalos.get(i));
+                                    for(j=0;j<bungalos.get(i).getReserva_0().getActividades().size();j++){
+                                        if(bungalos.get(i).getReserva_0().getActividades().get(j).getFechaInicio().isAfter(fechaFin) || bungalos.get(i).getReserva_0().getActividades().get(j).getFechaFin().isBefore(fechaInicio)){
+                                            System.out.println(bungalos.get(i).getId());
+                                            bungalosDisponibles.add(bungalos.get(i));
+                                        }
+                                    }
                                 }
                             }
                         }

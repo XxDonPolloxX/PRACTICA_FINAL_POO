@@ -9,7 +9,7 @@ public class Bungalo implements Serializable {
     private String nombre;
     private int capacidad;
     private float precio;
-    private static int numBungalo = 0;
+    private static int numBungalo;
     public Bungalo(String nombre, int capacidad, float precio){
         this.id = calcular_id();
         this.nombre = nombre;
