@@ -144,7 +144,10 @@ public class GestorBungalos implements Serializable {
 
 
                                     for (j = 0; j < bungalos.get(i).getReserva_0().getActividades().size(); j++) {
-                                        if (bungalos.get(i).getReserva_0().getActividades().get(j).getFechaInicio().isAfter(fechaFin) || bungalos.get(i).getReserva_0().getActividades().get(j).getFechaFin().isBefore(fechaInicio)) {
+                                        if ((fechaFin.isAfter(bungalos.get(i).getReserva_0().getActividades().get(j).getFechaInicio()) && fechaFin.isBefore(bungalos.get(i).getReserva_0().getActividades().get(j).getFechaFin())) || (fechaInicio.isAfter(bungalos.get(i).getReserva_0().getActividades().get(j).getFechaInicio()) && fechaInicio.isBefore(bungalos.get(i).getReserva_0().getActividades().get(j).getFechaFin()))) {
+
+                                        }
+                                        else {
                                             System.out.println(bungalos.get(i).getId());
                                             bungalosDisponibles.add(bungalos.get(i));
                                         }
