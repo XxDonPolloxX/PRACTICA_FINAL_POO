@@ -107,7 +107,7 @@ public class GestorBungalos implements Serializable {
         }
         public void agregarReserva(){
             int i, j;
-            boolean flagBungalo = false;
+            boolean flagBungalo = false, flagReserva = true;
             int personas;
             String opcion;
             String id, DNI, fechaInicioString, fechaFinString;
@@ -169,9 +169,13 @@ public class GestorBungalos implements Serializable {
                                     else {
                                         for (j = 0; j < bungalos.get(i).getReserva_0().getActividades().size(); j++) {
                                             if (bungalos.get(i).getReserva_0().getActividades().get(j).getFechaInicio().isAfter(fechaFin) || bungalos.get(i).getReserva_0().getActividades().get(j).getFechaFin().isBefore(fechaInicio)) {
-                                                System.out.println(bungalos.get(i).getId());
-                                                bungalosDisponibles.add(bungalos.get(i));
+                                                flagReserva = false;
                                             }
+
+                                        }
+                                        if(flagReserva = true){
+                                            System.out.println(bungalos.get(i).getId());
+                                            bungalosDisponibles.add(bungalos.get(i));
                                         }
                                     }
                                 }
@@ -223,8 +227,14 @@ public class GestorBungalos implements Serializable {
         id = MyInput.readString();
         for(i=0;i<b.getReserva_0().getActividades().size();i++){
             if(b.getReserva_0().getActividades().get(i).getId().equals(id)){
-                b.getReserva_0().getActividades().remove(i);
-                System.out.println("Reserva " + id + " cancelada con éxito");
+                if(b.getReserva_0().getActividades().get(i).getFechaInicio().isAfter(LocalDate.now())){
+                    b.getReserva_0().getActividades().remove(i);
+                    System.out.println("Reserva " + id + " cancelada con éxito");
+                }
+                else{
+                    System.out.println("No se puede cancelar una reserva que ya ha comenzado");
+                }
+
             }
         }
 
@@ -308,8 +318,14 @@ public class GestorBungalos implements Serializable {
                         id = MyInput.readString();
                         for(k=0;k<bungalos.get(i).getReserva_0().getActividades().get(j).getActividades().size();k++){
                             if(bungalos.get(i).getReserva_0().getActividades().get(j).getActividades().get(k).getActividad().getId().equals(id)){
-                                bungalos.get(i).getReserva_0().getActividades().get(j).getActividades().remove(k);
-                                System.out.println("Actividad cancelada con éxito");
+                                if(bungalos.get(i).getReserva_0().getActividades().get(j).getActividades().get(k).getFechaInicio().isAfter(LocalDate.now())){
+                                    bungalos.get(i).getReserva_0().getActividades().get(j).getActividades().remove(k);
+                                    System.out.println("Actividad cancelada con éxito");
+                                }
+                                else{
+                                    System.out.println("No se puede eliminar una actividad que ya ha comenzado");
+                                }
+
                             }
                         }
                     }

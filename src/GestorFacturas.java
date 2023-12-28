@@ -20,7 +20,14 @@ public class GestorFacturas implements Serializable {
         LocalDate fechaFacturacion;
         System.out.println("Introduzca el id de la reserva a facturar:");
         id = MyInput.readString();
-        fechaFacturacion = LocalDate.now();
+        for(i=0;i<facturas.size();i++){
+            if(facturas.get(i).getReservas().getId().equals(id)){
+                System.out.println("No se pueden generar dos facturas de una misma reserva");
+                return;
+            }
+        }
+        System.out.println("Introduce la fecha de facturación:");
+        fechaFacturacion = LocalDate.parse(MyInput.readString());
         for(i=0;i<bungalos.getBungalos().size();i++){
             for(j=0;j<bungalos.getBungalos().get(i).getReserva_0().getActividades().size();j++){
                 if(bungalos.getBungalos().get(i).getReserva_0().getActividades().get(j).getId().equals(id)){
@@ -29,12 +36,22 @@ public class GestorFacturas implements Serializable {
                 }
             }
         }
+        if(r == null){
+            System.out.println("No se ha encontrado la reserva");
+            return;
+        }
         for(i=0;i<clientes.getClientes().size();i++){
             if(clientes.getClientes().get(i).getId().equals(r.getCliente())){
                 cliente = clientes.getClientes().get(i);
             }
         }
-        facturas.add(new Factura(cliente, precio, fechaFacturacion, r));
+        if(r.getFechaFin().isBefore(fechaFacturacion) || r.getFechaFin().isEqual(fechaFacturacion)){
+            facturas.add(new Factura(cliente, precio, fechaFacturacion, r));
+        }
+        else{
+            System.out.println("Error: No se puede generar una factura de una reserva que no ha finalizado");
+        }
+
     }
     public void mostrarFacturasCliente(){
         String DNI;
