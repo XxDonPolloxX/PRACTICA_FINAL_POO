@@ -56,6 +56,7 @@ public class GestorFacturas implements Serializable {
     public void mostrarFacturasCliente(){
         String DNI;
         int i, j, k;
+        boolean flag = false;
         System.out.println("Introduzca el DNI del cliente:");
         DNI = MyInput.readString();
         for(i=0;i<facturas.size();i++){
@@ -64,7 +65,11 @@ public class GestorFacturas implements Serializable {
                 System.out.println("DNI: " + DNI);
                 System.out.println("Fecha: " + facturas.get(i).getFechaFacturacion());
                 System.out.println();
+                flag = true;
             }
+        }
+        if(!flag){
+            System.out.println("Error: Cliente no encontrado");
         }
     }
     public void datosFactura(){
@@ -80,13 +85,19 @@ public class GestorFacturas implements Serializable {
                 f = facturas.get(i);
             }
         }
-        System.out.println(f.getId());
-        System.out.println(f.getCliente().getId());
-        System.out.println(f.getCliente().getNombre());
-        System.out.println(f.getCliente().getTelefono());
-        System.out.println(f.getReservas().getId());
-        System.out.println(f.getCosteTotal());
-        System.out.println(f.getFechaFacturacion());
+        if(f == null){
+            System.out.println("Error: Datos no coincidentes");
+        }
+        else{
+            System.out.println(f.getId());
+            System.out.println(f.getCliente().getId());
+            System.out.println(f.getCliente().getNombre());
+            System.out.println(f.getCliente().getTelefono());
+            System.out.println(f.getReservas().getId());
+            System.out.println(f.getCosteTotal());
+            System.out.println(f.getFechaFacturacion());
+        }
+
 
 
     }

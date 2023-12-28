@@ -42,6 +42,7 @@ public class GestorClientes implements Serializable {
     }
     public void recuperarCliente(){
         int i;
+        boolean flag = false;
         String DNI;
         System.out.println("Introduzca el DNI del cliente:");
         DNI = MyInput.readString();
@@ -50,7 +51,11 @@ public class GestorClientes implements Serializable {
                 System.out.println("DNI: " + clientes.get(i).getId());
                 System.out.println("Nombre: " + clientes.get(i).getNombre());
                 System.out.println("Teléfono: " + clientes.get(i).getTelefono());
+                flag = true;
             }
+        }
+        if(!flag){
+            System.out.println("Error: Cliente no encontrado");
         }
     }
     public void menuClientes(){

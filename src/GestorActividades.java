@@ -27,12 +27,17 @@ public class GestorActividades implements Serializable {
     }
     public void recuperarActividad(String id){
         int i;
+        boolean flag = false;
         for(i=0;i<actividades.size();i++){
             if(actividades.get(i).getId().equals(id)){
                 System.out.println("Id: " + actividades.get(i).getId());
                 System.out.println("Descripción: " + actividades.get(i).getDescripcion());
                 System.out.println("Precio: " + actividades.get(i).getPrecio() + " €");
+                flag = true;
             }
+        }
+        if(!flag){
+            System.out.println("Error: No se ha encontrado la actividad");
         }
     }
     public void menuActividades(){

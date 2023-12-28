@@ -47,11 +47,13 @@ public class GestorBungalos implements Serializable {
     }
     public void eliminar_bungalo(){ //Aqui falta comprobar si el bungalo tiene reservas
         String id;
+        boolean flag = false;
         int i;
         System.out.print("Introduce el id del bungalo a eliminar:");
         id = MyInput.readString();
         for(i=0;i<bungalos.size();i++){
             if(id.equals(bungalos.get(i).getId())){
+                flag = true;
                 if(bungalos.get(i).getReserva_0().getActividades().isEmpty()){
                     System.out.println("Bungalo " + bungalos.get(i).getId() +  " eliminado con éxito!");
                     bungalos.remove(bungalos.get(i));
@@ -61,6 +63,9 @@ public class GestorBungalos implements Serializable {
                 }
 
             }
+        }
+        if(!flag){
+            System.out.println("Error: Bungalo no encontrado");
         }
 
     }
@@ -83,6 +88,7 @@ public class GestorBungalos implements Serializable {
         }
         public String mostrarBungalos(){
         int i;
+        boolean flag = false;
         String opcion;
         System.out.println("¿Desea mostrar la información de bungalos adaptados? En caso negativo se mostrará la información de los no adaptados (s/n):");
         opcion = MyInput.readString();
@@ -91,7 +97,6 @@ public class GestorBungalos implements Serializable {
                 for(i=0;i<bungalos.size();i++){
                     if("BA".equals(bungalos.get(i).getId().substring(0, 2))){
                         cadena_bungalos += bungalos.get(i).getId() + ": " + bungalos.get(i).getCapacidad() + " ";
-
                     }
                 }
 
@@ -102,6 +107,9 @@ public class GestorBungalos implements Serializable {
                         cadena_bungalos += bungalos.get(i).getId() + ": " + bungalos.get(i).getCapacidad() + " ";
                     }
                 }
+            }
+            if(cadena_bungalos.equals("")){
+                return "No hay bungalos registrados";
             }
         return cadena_bungalos;
         }
@@ -211,12 +219,17 @@ public class GestorBungalos implements Serializable {
         public void eliminarReserva(){
         int i, j;
         String id;
+        boolean flag = false;
         Bungalo b = null;
         System.out.println("Introduce el id del bungalo del que se quiere eliminar la reserva:");
         id = MyInput.readString();
         for(i=0;i<bungalos.size();i++){
             if(bungalos.get(i).getId().equals(id)){
                 b = bungalos.get(i);
+                if(b == null){
+                    System.out.println("Error: Bungalo no encontrado");
+                    return;
+                }
                 System.out.println("Reservas disponibles del bungalo " + b.getId() + ":");
                 for(j=0;j<b.getReserva_0().getActividades().size();j++){
                     System.out.println(b.getReserva_0().getActividades().get(j).getId());
@@ -230,12 +243,16 @@ public class GestorBungalos implements Serializable {
                 if(b.getReserva_0().getActividades().get(i).getFechaInicio().isAfter(LocalDate.now())){
                     b.getReserva_0().getActividades().remove(i);
                     System.out.println("Reserva " + id + " cancelada con éxito");
+                    flag = true;
                 }
                 else{
                     System.out.println("No se puede cancelar una reserva que ya ha comenzado");
                 }
 
             }
+        }
+        if(!flag){
+            System.out.println("Error: Actividad no encontrada");
         }
 
         }
@@ -289,9 +306,13 @@ public class GestorBungalos implements Serializable {
                 System.out.println("Reserva de la actividad " + a.getId() + " realizada con éxito");
             }
         }
+        if(a == null){
+            System.out.println("Error: Actividad no encontrada");
+        }
         }
         public void eliminarReservaActividad(){
         int i, j, k;
+        boolean flag = false;
         String id;
             System.out.println("Reservas disponibles:");
             for(i=0;i<bungalos.size();i++){
@@ -314,6 +335,7 @@ public class GestorBungalos implements Serializable {
             for(i=0;i<bungalos.size();i++){
                 for(j=0;j<bungalos.get(i).getReserva_0().getActividades().size();j++){
                     if(bungalos.get(i).getReserva_0().getActividades().get(j).getId().equals(id)){
+                        flag = true;
                         System.out.println("Introduzca la actividad que desea cancelar:");
                         id = MyInput.readString();
                         for(k=0;k<bungalos.get(i).getReserva_0().getActividades().get(j).getActividades().size();k++){
@@ -330,6 +352,9 @@ public class GestorBungalos implements Serializable {
                         }
                     }
                 }
+            }
+            if(!flag){
+                System.out.println("Error: Datos no encontrados");
             }
 
 
@@ -364,6 +389,7 @@ public class GestorBungalos implements Serializable {
         public void listarReservaDNI(){
         int i, j;
         String DNI;
+        boolean flag = false;
         System.out.println("Introduzca el DNI del cliente:");
         DNI = MyInput.readString();
         for(i=0;i<bungalos.size();i++){
@@ -372,6 +398,9 @@ public class GestorBungalos implements Serializable {
                     System.out.println(bungalos.get(i).getReserva_0().getActividades().get(j).getId());
                 }
             }
+        }
+        if(!flag){
+            System.out.println("Error: Cliente no encontrado");
         }
         }
         public void infoReserva(){
@@ -396,6 +425,9 @@ public class GestorBungalos implements Serializable {
                 }
             }
 
+        }
+        if(r == null){
+            System.out.println("Error: Reserva no encontrada");
         }
         }
         public void menuBungalos(){
