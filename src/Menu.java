@@ -20,7 +20,7 @@ public class Menu {
         opcion = MyInput.readInt();
         if(opcion<0 || opcion>5){
             System.out.println("Formato de opción no válido");
-            return 0;
+            return -1;
         }
         return opcion;
     }
@@ -43,6 +43,8 @@ public class Menu {
                 break;
             case 0:
                 System.out.println("Saliendo del programa...");
+                break;
+            default:
                 break;
 
 
