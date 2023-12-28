@@ -19,4 +19,10 @@ public class Reserva implements java.io.Serializable{
     public Actividad getActividad(){return null;}
     public String getCliente(){return "";}
     public float getPrecio(){return 0;}
+    public boolean hayHueco(LocalDate f_i, LocalDate f_f) {
+        if (f_i.isAfter(getFechaFin()) || f_f.isBefore(getFechaInicio()))
+            return true;
+        else
+            return false;
+    }
 }

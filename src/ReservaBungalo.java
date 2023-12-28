@@ -34,6 +34,18 @@ public class ReservaBungalo extends Reserva{
     }
 
 
+    public boolean hayHueco(LocalDate f_i, LocalDate f_f) {
+        if (f_i.isAfter(getFechaFin()) || f_f.isBefore(getFechaInicio()))
+            return true;
+        else
+            return false;
+    }
+    public boolean bungaloLibre(LocalDate f_i, LocalDate f_f) {
+        boolean hueco=true;
+        for(Reserva r:actividades)
+            hueco=hueco && r.hayHueco(f_i,f_f);
+        return hueco;
+    }
     public boolean validar_fecha(Reserva r){
         if(super.getFechaInicio().isAfter(r.getFechaInicio()) || super.getFechaFin().isBefore(r.getFechaFin())){
             return false;

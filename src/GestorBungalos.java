@@ -152,13 +152,11 @@ public class GestorBungalos implements Serializable {
 
 
                                     for (j = 0; j < bungalos.get(i).getReserva_0().getActividades().size(); j++) {
-                                        if ((fechaFin.isAfter(bungalos.get(i).getReserva_0().getActividades().get(j).getFechaInicio()) && fechaFin.isBefore(bungalos.get(i).getReserva_0().getActividades().get(j).getFechaFin())) || (fechaInicio.isAfter(bungalos.get(i).getReserva_0().getActividades().get(j).getFechaInicio()) && fechaInicio.isBefore(bungalos.get(i).getReserva_0().getActividades().get(j).getFechaFin()))) {
-
-                                        }
-                                        else {
+                                        if (bungalos.get(i).getReserva_0().getActividades().get(j).hayHueco(fechaInicio, fechaFin)) {
                                             System.out.println(bungalos.get(i).getId());
                                             bungalosDisponibles.add(bungalos.get(i));
                                         }
+
                                     }
                                     }
 
@@ -176,15 +174,13 @@ public class GestorBungalos implements Serializable {
                                     }
                                     else {
                                         for (j = 0; j < bungalos.get(i).getReserva_0().getActividades().size(); j++) {
-                                            if (bungalos.get(i).getReserva_0().getActividades().get(j).getFechaInicio().isAfter(fechaFin) || bungalos.get(i).getReserva_0().getActividades().get(j).getFechaFin().isBefore(fechaInicio)) {
-                                                flagReserva = false;
+                                            if (bungalos.get(i).getReserva_0().getActividades().get(j).hayHueco(fechaInicio, fechaFin)) {
+                                                System.out.println(bungalos.get(i).getId());
+                                                bungalosDisponibles.add(bungalos.get(i));
                                             }
 
                                         }
-                                        if(flagReserva = true){
-                                            System.out.println(bungalos.get(i).getId());
-                                            bungalosDisponibles.add(bungalos.get(i));
-                                        }
+
                                     }
                                 }
                             }
@@ -290,6 +286,10 @@ public class GestorBungalos implements Serializable {
             for(j=0;j<bungalos.get(i).getReserva_0().getActividades().size();j++){
                 if(bungalos.get(i).getReserva_0().getActividades().get(j).getId().equals(id)){
                     r = bungalos.get(i).getReserva_0().getActividades().get(i);
+                    if(r.getFechaInicio().isAfter(fechaInicio) || r.getFechaFin().isBefore(fechaFin)){
+                        System.out.println("Error: La fecha de la actividad no puede estar fuera de la reserva");
+                        return;
+                    }
                 }
             }
         }
