@@ -117,13 +117,18 @@ public class GestorBungalos implements Serializable {
             int i, j;
             boolean flagBungalo = false, flagReserva = true;
             int personas;
-            String opcion;
+            String opcion, opcion2;
             String id, DNI, fechaInicioString, fechaFinString;
             LocalDate fechaInicio;
             LocalDate fechaFin;
             ArrayList<Bungalo> bungalosDisponibles = new ArrayList<Bungalo>();
             System.out.println("¿Desea reservar un bungalo adaptado (s/n)?");
             opcion = MyInput.readString();
+            if(opcion.equalsIgnoreCase("s")){
+                System.out.println("Desea añadir algún servicio especial? (s/n)");
+                opcion2 = MyInput.readString();
+
+            }
             System.out.println("Introduzca el DNI del cliente");
             DNI = MyInput.readString();
             System.out.println("Introduzca la fecha de comienzo de la reserva:");

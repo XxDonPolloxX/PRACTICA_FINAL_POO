@@ -6,17 +6,16 @@ public class Factura implements java.io.Serializable{
     private String id;
     private float costeTotal;
     private LocalDate fechaFacturacion;
-    private static int numFactura;
     private Cliente cliente;
     private Reserva reservas;
 
-    public Factura(Cliente c, float precio, LocalDate fecha_factura, Reserva reservas){
-        id = calcular_id();
+    public Factura(Cliente c, float precio, LocalDate fecha_factura, Reserva reservas, int numFactura){
+        id = calcular_id(numFactura);
         cliente = c;
         this.reservas = reservas;
         costeTotal = precio;
         fechaFacturacion = fecha_factura;
-        numFactura += 1;
+
 
     }
     public String getId(){return id;}
@@ -24,7 +23,7 @@ public class Factura implements java.io.Serializable{
     public LocalDate getFechaFacturacion(){return fechaFacturacion;}
     public Reserva getReservas(){return reservas;}
     public float getCosteTotal(){return costeTotal;}
-    public String calcular_id(){
+    public String calcular_id(int numFactura){
         String id, idf = "";
         int i;
         id = Integer.toString(numFactura);

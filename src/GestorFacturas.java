@@ -6,6 +6,7 @@ public class GestorFacturas implements Serializable {
     private GestorClientes clientes;
     private GestorBungalos bungalos;
     private ArrayList<Factura> facturas;
+    private int numFactura = 0;
     public GestorFacturas(GestorClientes clientes, GestorBungalos bungalos){
         this.bungalos = bungalos;
         this.clientes = clientes;
@@ -46,7 +47,8 @@ public class GestorFacturas implements Serializable {
             }
         }
         if(r.getFechaFin().isBefore(fechaFacturacion) || r.getFechaFin().isEqual(fechaFacturacion)){
-            facturas.add(new Factura(cliente, precio, fechaFacturacion, r));
+            facturas.add(new Factura(cliente, precio, fechaFacturacion, r, numFactura));
+            numFactura++;
         }
         else{
             System.out.println("Error: No se puede generar una factura de una reserva que no ha finalizado");
