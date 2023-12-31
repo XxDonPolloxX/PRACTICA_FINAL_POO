@@ -55,7 +55,7 @@ public class ReservaBungalo extends Reserva{
     public float getPrecio(){
         int i;
         float precio;
-        precio = bungalo.getPrecio();
+        precio = bungalo.getPrecio()*((getFechaFin().getDayOfYear()-getFechaInicio().getDayOfYear())+1);
         for(i=0;i<actividades.size();i++){
             precio += actividades.get(i).getPrecio();
         }
