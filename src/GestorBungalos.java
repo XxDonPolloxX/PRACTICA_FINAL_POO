@@ -125,8 +125,7 @@ public class GestorBungalos implements Serializable {
             System.out.println("¿Desea reservar un bungalo adaptado (s/n)?");
             opcion = MyInput.readString();
             if(opcion.equalsIgnoreCase("s")){
-                System.out.println("Desea añadir algún servicio especial? (s/n)");
-                opcion2 = MyInput.readString();
+
 
             }
             System.out.println("Introduzca el DNI del cliente");
@@ -199,10 +198,48 @@ public class GestorBungalos implements Serializable {
                         id = MyInput.readString();
                         for(i=0;i<bungalosDisponibles.size();i++){
                             if(bungalosDisponibles.get(i).getId().equals(id)){
-                                bungalosDisponibles.get(i).getReserva_0().getActividades().add(new ReservaBungalo(bungalosDisponibles.get(i), DNI, fechaInicio, fechaFin, numReservas));
-                                numReservas += 1;
-                                System.out.println("Reserva " + bungalosDisponibles.get(i).getReserva_0().getActividades().getLast().getId() + " añadida con éxito");
-                                flagBungalo = true;
+                                if(opcion.equalsIgnoreCase("s")){
+                                    System.out.println("Desea añadir algún servicio especial? (s/n)");
+                                    opcion2 = MyInput.readString();
+                                    if(opcion2.equalsIgnoreCase("s")){
+                                        System.out.println("Elija el servicio:");
+                                        System.out.println("1. Asistente");
+                                        System.out.println("2. Catering");
+                                        System.out.println("3. Ambos");
+                                        opcion2 = MyInput.readString();
+                                        switch (opcion2){
+                                            case "1":
+                                                bungalosDisponibles.get(i).getReserva_0().getActividades().add(new ReservaBungalo(new ServicioAsistente(bungalosDisponibles.get(i)), DNI, fechaInicio, fechaFin, numReservas) );
+                                                numReservas += 1;
+                                                System.out.println("Reserva " + bungalosDisponibles.get(i).getReserva_0().getActividades().getLast().getId() + " añadida con éxito");
+                                                flagBungalo = true;
+                                                break;
+                                            case "2":
+                                                bungalosDisponibles.get(i).getReserva_0().getActividades().add(new ReservaBungalo(new ServicioCatering(bungalosDisponibles.get(i)), DNI, fechaInicio, fechaFin, numReservas) );
+                                                numReservas += 1;
+                                                System.out.println("Reserva " + bungalosDisponibles.get(i).getReserva_0().getActividades().getLast().getId() + " añadida con éxito");
+                                                flagBungalo = true;
+                                                break;
+                                            case "3":
+                                                bungalosDisponibles.get(i).getReserva_0().getActividades().add(new ReservaBungalo(new ServicioCatering(new ServicioAsistente(bungalosDisponibles.get(i))), DNI, fechaInicio, fechaFin, numReservas) );
+                                                numReservas += 1;
+                                                System.out.println("Reserva " + bungalosDisponibles.get(i).getReserva_0().getActividades().getLast().getId() + " añadida con éxito");
+                                                flagBungalo = true;
+                                                break;
+                                            default:
+                                                System.out.println("Opción no válida");
+                                                break;
+
+                                        }
+                                    }
+                                }
+                                else{
+                                    bungalosDisponibles.get(i).getReserva_0().getActividades().add(new ReservaBungalo(bungalosDisponibles.get(i), DNI, fechaInicio, fechaFin, numReservas));
+                                    numReservas += 1;
+                                    System.out.println("Reserva " + bungalosDisponibles.get(i).getReserva_0().getActividades().getLast().getId() + " añadida con éxito");
+                                    flagBungalo = true;
+                                }
+
                             }
                         }
                         if(!flagBungalo){
