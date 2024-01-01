@@ -3,4 +3,5 @@ public class ServicioAsistente extends ServicioEspecialDecorator{
         super(b);
     }
     public String getNombre(){return super.getNombre() + " Asistente";}
+    public float getPrecio(){return super.getPrecio() + 50;}
 }

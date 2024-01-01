@@ -4,4 +4,5 @@ public class ServicioCatering extends ServicioEspecialDecorator {
         super(b);
     }
     public String getNombre(){return super.getNombre() + " Catering";}
+    public float getPrecio(){return super.getPrecio() + 30;}
 }

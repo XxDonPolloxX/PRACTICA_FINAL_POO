@@ -10,11 +10,12 @@ public class Bungalo implements Serializable {
     private int capacidad;
     private float precio;
     public Bungalo(String nombre, int capacidad, float precio, int num){
-        this.id = calcular_id(num);
+        // quito el this
+        this.id = this.calcular_id(num);
         this.nombre = nombre;
         this.capacidad = capacidad;
         this.precio = precio;
-        this.reserva_0 = new ReservaBungalo(this, null, null, null, 0);
+        reserva_0 = new ReservaBungalo(this, null, null, null, 0);
     }
 
     public String getId() {

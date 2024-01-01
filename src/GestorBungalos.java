@@ -35,10 +35,12 @@ public class GestorBungalos implements Serializable {
         precio = MyInput.readFloat();
 
         if(opcion.equals("s")){
+
             b = new BungaloAdaptado(nombre, capacidad, precio, numbungalos);
             numbungalos += 1;
         }
         else{
+
             b = new Bungalo(nombre, capacidad, precio, numbungalos);
             numbungalos += 1;
         }
@@ -89,11 +91,12 @@ public class GestorBungalos implements Serializable {
         public String mostrarBungalos(){
         int i;
         boolean flag = false;
-        String opcion;
+        String opcion="s";
         System.out.println("¿Desea mostrar la información de bungalos adaptados? En caso negativo se mostrará la información de los no adaptados (s/n):");
         opcion = MyInput.readString();
         String cadena_bungalos= "";
             if(opcion.equals("s")){
+
                 for(i=0;i<bungalos.size();i++){
                     if("BA".equals(bungalos.get(i).getId().substring(0, 2))){
                         cadena_bungalos += bungalos.get(i).getId() + ": " + bungalos.get(i).getCapacidad() + " ";
@@ -145,7 +148,7 @@ public class GestorBungalos implements Serializable {
             System.out.println("Estos son los bungalos disponibles:");
             for(i=0;i<listaClientes.getClientes().size();i++){
                 if(listaClientes.getClientes().get(i).getId().equals(DNI)){
-                    if(opcion.equalsIgnoreCase("s")){
+                    if(opcion.equalsIgnoreCase("s")){   // los bungalos adaptados
                         for(i=0;i<bungalos.size();i++){
                             if(bungalos.get(i).getId().substring(0,2).equals("BA")){
                                 if(bungalos.get(i).getCapacidad() >= personas) {
@@ -168,7 +171,7 @@ public class GestorBungalos implements Serializable {
                             }
                         }
                     }
-                    else{
+                    else{     // los bungalos no adaptados
                         for(i=0;i<bungalos.size();i++){
                             if(! bungalos.get(i).getId().substring(0,2).equals("BA")){
                                 if(bungalos.get(i).getCapacidad() >= personas){
