@@ -2,6 +2,7 @@ public class
 
 BungaloAdaptado extends Bungalo{
     private int numero;
+    private String id;
     public BungaloAdaptado(String nombre, int capacidad, float precio, int num){
 
 
@@ -10,6 +11,9 @@ BungaloAdaptado extends Bungalo{
         //anterior
         super(nombre, capacidad, precio, num);
         numero = num;
+        this.id = calcular_id();
+
+
         //nuevo
 
 
@@ -18,4 +22,5 @@ BungaloAdaptado extends Bungalo{
         String id;
         id =  "BA" + numero;
         return id;}
+    public String getId(){return this.id;}
 }

@@ -34,8 +34,7 @@ public class GestorBungalos implements Serializable {
         System.out.println("Introduzca el precio:");
         precio = MyInput.readFloat();
 
-        if(opcion.equals("s")){
-
+        if(opcion.equalsIgnoreCase("s")){
             b = new BungaloAdaptado(nombre, capacidad, precio, numbungalos);
             numbungalos += 1;
         }
