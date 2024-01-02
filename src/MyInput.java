@@ -3,7 +3,7 @@ import java.io.*;
 
 /**
  * Clase con utilidades para la entrada de datos desde teclado y fichero
- * @author jvalvarez
+ * @author
  */
 public class MyInput {
     // Lee una cadena de caracteres desde el teclado

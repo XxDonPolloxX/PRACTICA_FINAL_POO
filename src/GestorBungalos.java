@@ -132,10 +132,10 @@ public class GestorBungalos implements Serializable {
             }
             System.out.println("Introduzca el DNI del cliente");
             DNI = MyInput.readString();
-            System.out.println("Introduzca la fecha de comienzo de la reserva:");
+            System.out.println("Introduzca la fecha de comienzo de la reserva (formato AAAA-MM-DD):");
             fechaInicioString = MyInput.readString();
             fechaInicio = LocalDate.parse(fechaInicioString);
-            System.out.println("Introduzca la fecha de fin de la reserva:");
+            System.out.println("Introduzca la fecha de fin de la reserva (formato AAAA-MM-DD):");
             fechaFinString = MyInput.readString();
             fechaFin = LocalDate.parse(fechaFinString);
             if(fechaInicio.isAfter(fechaFin)){
@@ -201,13 +201,13 @@ public class GestorBungalos implements Serializable {
                         for(i=0;i<bungalosDisponibles.size();i++){
                             if(bungalosDisponibles.get(i).getId().equals(id)){
                                 if(opcion.equalsIgnoreCase("s")){
-                                    System.out.println("Desea añadir algún servicio especial? (s/n)");
-                                    opcion2 = MyInput.readString();
-                                    if(opcion2.equalsIgnoreCase("s")){
+                                    System.out.println("Desea añadir algún servicio especial? ");
+
                                         System.out.println("Elija el servicio:");
                                         System.out.println("1. Asistente");
                                         System.out.println("2. Catering");
                                         System.out.println("3. Ambos");
+                                        System.out.println("4. Ninguno");
                                         opcion2 = MyInput.readString();
                                         switch (opcion2){
                                             case "1":
@@ -228,14 +228,20 @@ public class GestorBungalos implements Serializable {
                                                 System.out.println("Reserva " + bungalosDisponibles.get(i).getReserva_0().getActividades().getLast().getId() + " añadida con éxito");
                                                 flagBungalo = true;
                                                 break;
+                                            case "4":  //CORREGIDO AÑADO LA OPCION DE ELEGIR UN BUNGALO ADAPTADO SIN SERVICIOS
+                                                bungalosDisponibles.get(i).getReserva_0().getActividades().add(new ReservaBungalo(bungalosDisponibles.get(i), DNI, fechaInicio, fechaFin, numReservas) );
+                                                numReservas += 1;
+                                                System.out.println("Reserva " + bungalosDisponibles.get(i).getReserva_0().getActividades().getLast().getId() + " añadida con éxito");
+                                                flagBungalo = true;
+                                                break;
+
                                             default:
                                                 System.out.println("Opción no válida");
                                                 break;
 
                                         }
-                                    }
-                                }
-                                else{
+
+                                }  else {
                                     bungalosDisponibles.get(i).getReserva_0().getActividades().add(new ReservaBungalo(bungalosDisponibles.get(i), DNI, fechaInicio, fechaFin, numReservas));
                                     numReservas += 1;
                                     System.out.println("Reserva " + bungalosDisponibles.get(i).getReserva_0().getActividades().getLast().getId() + " añadida con éxito");
@@ -326,10 +332,13 @@ public class GestorBungalos implements Serializable {
         System.out.println("Introduzca la fecha de fin de la reserva:");
         fechaFinString = MyInput.readString();
         fechaFin = LocalDate.parse(fechaFinString);
+
+
+
         for(i=0;i<bungalos.size();i++){
             for(j=0;j<bungalos.get(i).getReserva_0().getActividades().size();j++){
                 if(bungalos.get(i).getReserva_0().getActividades().get(j).getId().equals(id)){
-                    r = bungalos.get(i).getReserva_0().getActividades().get(i);
+                    r = bungalos.get(i).getReserva_0().getActividades().get(j); // EL SEGUNDO GET i ES UN j CORREGIDO
                     if(r.getFechaInicio().isAfter(fechaInicio) || r.getFechaFin().isBefore(fechaFin)){
                         System.out.println("Error: La fecha de la actividad no puede estar fuera de la reserva");
                         return;

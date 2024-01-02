@@ -7,6 +7,7 @@ public class Main {
         GestorGeneralSingleton g = GestorGeneralSingleton.ObtenerInstancia();
         Menu m = new Menu(g);
         m.ejecutar();
+
         MyInput.serialize(g, "fichero.dat");
 
 

@@ -36,8 +36,12 @@ public class GestorClientes implements Serializable {
     }
     public void listarClientes(){
         int i;
-        for(i=0;i<clientes.size();i++){
-            System.out.println(clientes.get(i).getNombre() + ": " + clientes.get(i).getId());
+        if (clientes.size() == 0){
+            System.out.println("No hay clientes");
+        } else {
+            for(i=0;i<clientes.size();i++){
+               System.out.println(clientes.get(i).getNombre() + ": " + clientes.get(i).getId());
+            }
         }
     }
     public void recuperarCliente(){
@@ -65,7 +69,8 @@ public class GestorClientes implements Serializable {
             System.out.println("1. Agregar cliente");
             System.out.println("2. Listar clientes");
             System.out.println("3. Recuperar cliente");
-            System.out.println("4. Volver al menú principal");
+            System.out.println("4. Borrar cliente");
+            System.out.println("5. Volver al menú principal");
             s = MyInput.readString();
             switch(s){
                 case "1":
@@ -77,12 +82,35 @@ public class GestorClientes implements Serializable {
                 case "3":
                     recuperarCliente();
                     break;
-                case "4":
+
+                 case "4":
+                    borrarCliente();
+                    break;
+                case "5":
                     break;
                 default:
                     System.out.println("Opción no válida");
                     break;
             }
-        }while(!s.equals("4"));
+        }while(!s.equals("5"));
+
     }
+
+        public void borrarCliente(){
+            int i;
+            boolean flag = false;
+            String DNI;
+            System.out.println("Introduzca el DNI del cliente:");
+            DNI = MyInput.readString();
+            for(i=0;i<clientes.size();i++){
+                if(clientes.get(i).getId().equals(DNI)){
+                    clientes.remove(i);
+                    flag = true;
+                }
+            }
+            if(!flag){
+                System.out.println("Error: Cliente no encontrado");
+            }
+        }
+
 }
