@@ -1,9 +1,7 @@
 import java.io.*;
-
-
 /**
- * Clase con utilidades para la entrada de datos desde teclado y fichero
- * @author
+ * Esta clase tiene ulitidades para la entrada de datos por teclado.
+ * @author Adrián Santiuste Gil y Diego García Santos.
  */
 public class MyInput {
     // Lee una cadena de caracteres desde el teclado
@@ -82,7 +80,12 @@ public class MyInput {
         return Float.parseFloat(readString()); }
 
 
-
+    /**
+     * Este método serializa un objeto.
+     * @param a es el objeto que se quiere serializar.
+     * @param nombreFichero es el nombre del fichero donde se va a guardar el objeto.
+     * @param <A> es el tipo de objeto que se quiere serializar.
+     */
     public static <A> void serialize(A a, String nombreFichero) {
         try {
             FileOutputStream fos = new FileOutputStream(nombreFichero) ;

@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-
+/**
+ * Esta clase representa a el gestor de bungalo.
+ * @author Adrián Santiuste Gil y Diego García Santos.
+ */
 public class GestorBungalos implements Serializable {
     private ArrayList<Bungalo> bungalos;
     private GestorClientes listaClientes;
@@ -12,14 +15,27 @@ public class GestorBungalos implements Serializable {
     private int numbungalos;
     private int numReservas;
 
+    /**
+     * Este es el constructor de la clase.
+     * @param clientes es el gestor de clientes.
+     * @param actividades es el gestor de actividades.
+     */
     public GestorBungalos(GestorClientes clientes, GestorActividades actividades) {
         this.bungalos = new ArrayList<Bungalo>();
         this.listaClientes = clientes;
         this.actividades = actividades;
     }
+
+    /**
+     * Este método devuelve el número de bungalos.
+     */
     public ArrayList<Bungalo> getBungalos(){
         return bungalos;
     }
+
+    /**
+     * Este método agrega un bungalo.
+     */
     public void agregar_bungalo(){
         String opcion = "n", nombre;
         int capacidad;
@@ -46,6 +62,10 @@ public class GestorBungalos implements Serializable {
         bungalos.add(b);
         System.out.println("Bungalo " + b.getId() +  " añadido con éxito!");
     }
+
+    /**
+     * Este método elimina un bungalo.
+     */
     public void eliminar_bungalo(){ //Aqui falta comprobar si el bungalo tiene reservas
         String id;
         boolean flag = false;
@@ -70,6 +90,10 @@ public class GestorBungalos implements Serializable {
         }
 
     }
+
+    /**
+     * Este método recupera un bungalo.
+     */
     public Bungalo recuperar_bungalo(){
         int i;
         String id;
@@ -87,6 +111,10 @@ public class GestorBungalos implements Serializable {
         System.out.println("Bungalo no encontrado");
         return null;
         }
+
+    /**
+     * Este método muestra los bungalos.
+     */
         public String mostrarBungalos(){
         int i;
         boolean flag = false;
@@ -115,6 +143,10 @@ public class GestorBungalos implements Serializable {
             }
         return cadena_bungalos;
         }
+
+    /**
+     * Este metodo agrega una reserva en dicho bungalo.
+     */
         public void agregarReserva(){
             int i, j;
             boolean flagBungalo = false, flagReserva = true;
@@ -262,6 +294,10 @@ public class GestorBungalos implements Serializable {
             }
 
         }
+
+    /**
+     * Este método elimina una reserva.
+     */
         public void eliminarReserva(){
         int i, j;
         String id;
@@ -302,6 +338,10 @@ public class GestorBungalos implements Serializable {
         }
 
         }
+
+    /**
+     * Este método agrega una actividad a la reserva.
+     */
         public void agregarActividad(){
         int i, j, participantes;
         String id;
@@ -363,6 +403,10 @@ public class GestorBungalos implements Serializable {
             System.out.println("Error: Actividad no encontrada");
         }
         }
+
+    /**
+     * Este método elimina una actividad de la reserva.
+     */
         public void eliminarReservaActividad(){
         int i, j, k;
         boolean flag = false;
@@ -412,6 +456,10 @@ public class GestorBungalos implements Serializable {
 
 
         }
+
+    /**
+     * Este método lista las reservas de un bungalo.
+     */
         public void listarReservasBungalo(){
         int i, j;
         String id;
@@ -439,6 +487,9 @@ public class GestorBungalos implements Serializable {
         }
         }
 
+    /**
+     * Este método lista las reservas de un cliente.
+     */
         public void listarReservaDNI(){
         int i, j;
         String DNI;
@@ -456,6 +507,10 @@ public class GestorBungalos implements Serializable {
             System.out.println("Error: Cliente no encontrado");
         }
         }
+
+    /**
+     * Este método muestra la información de una reserva.
+     */
         public void infoReserva(){
         int i, j, k;
         String id;
@@ -483,6 +538,10 @@ public class GestorBungalos implements Serializable {
             System.out.println("Error: Reserva no encontrada");
         }
         }
+
+    /**
+     * Este método muestra el menú de bungalos.
+     */
         public void menuBungalos(){
             String s;
             do{
@@ -514,6 +573,10 @@ public class GestorBungalos implements Serializable {
                 }
             }while(!s.equals("5"));
         }
+
+    /**
+     * Este método muestra el menú de reservas.
+     */
         public void menuReservas(){
     String s;
             do{

@@ -1,8 +1,21 @@
+/**
+ * Esta clase contiene el menú principal del programa.
+ * @author Adrián Santiuste Gil y Diego García Santos.
+ */
 public class Menu {
     private GestorGeneralSingleton gestor;
+
+    /**
+     * Este es el constructor de la clase.
+     * @param gestor es el gestor general del programa.
+     */
     public Menu(GestorGeneralSingleton gestor){
         this.gestor = gestor;
     }
+
+    /**
+     * Este método muestra las opciones del menú principal.
+     */
     public void opciones(){
     System.out.println("");
     System.out.println("MENÚ PRINCIPAL");
@@ -15,6 +28,9 @@ public class Menu {
     System.out.println("0. Salir del programa");
     }
 
+    /**
+     * @return devuelve la opción elegida.
+     */
     public int seleccionarOpcion(){
         int opcion;
         opcion = MyInput.readInt();
@@ -24,6 +40,11 @@ public class Menu {
         }
         return opcion;
     }
+
+    /**
+     * Este método ejecuta la opción elegida.
+     * @param opcion es la opción elegida.
+     */
     public void ejecutar(int opcion){
         switch (opcion){
             case 1:
@@ -50,6 +71,10 @@ public class Menu {
 
         }
     }
+
+    /**
+     * Este método ejecuta el menú principal.
+     */
     public void ejecutar(){
         int opcionMenu = 0;
         do{

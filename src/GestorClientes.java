@@ -1,12 +1,28 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Esta clase representa un gestor de clientes del camping.
+ * @author Adrián Santiuste Gil y Diego García Santos.
+ */
 public class GestorClientes implements Serializable {
     private ArrayList<Cliente> clientes;
+
+    /**
+     * Este es el constructor de la clase.
+     */
     public GestorClientes(){
         clientes = new ArrayList<Cliente>();
     }
+
+    /**
+     * Este método devuelve los clientes del camping.
+     */
     public ArrayList<Cliente> getClientes(){return clientes;}
+
+    /**
+     * Este método añade un cliente al camping.
+     */
     public void agregarCliente(){
         String DNI;
         String nombre;
@@ -25,6 +41,11 @@ public class GestorClientes implements Serializable {
         System.out.println("El cliente: " + clientes.getLast().getId() + " se ha añadido con éxito");
         }
         }
+
+    /**
+     * Este método valida el DNI del cliente.
+     * @param dni es el dni del cliente que se quiere validar
+     */
     public boolean validarDNI(String dni){
         int i;
         for(i=0;i<clientes.size();i++){
@@ -34,6 +55,10 @@ public class GestorClientes implements Serializable {
         }
         return true;
     }
+
+    /**
+     * Este método lista los clientes del camping.
+     */
     public void listarClientes(){
         int i;
         if (clientes.size() == 0){
@@ -44,6 +69,10 @@ public class GestorClientes implements Serializable {
             }
         }
     }
+
+    /**
+     * Este método recupera un cliente del camping.
+     */
     public void recuperarCliente(){
         int i;
         boolean flag = false;
@@ -62,6 +91,10 @@ public class GestorClientes implements Serializable {
             System.out.println("Error: Cliente no encontrado");
         }
     }
+
+    /**
+     * Este método muestra el menú de clientes.
+     */
     public void menuClientes(){
         String s;
         do{
@@ -96,6 +129,9 @@ public class GestorClientes implements Serializable {
 
     }
 
+    /**
+     * Este método borra un cliente del camping.
+     */
         public void borrarCliente(){
             int i;
             boolean flag = false;

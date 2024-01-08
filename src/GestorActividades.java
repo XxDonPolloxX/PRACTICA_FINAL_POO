@@ -1,13 +1,29 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Esta clase representa un gestor de actividades del camping.
+ * @author Adrián Santiuste Gil y Diego García Santos.
+ */
 public class GestorActividades implements Serializable {
     private ArrayList<Actividad> actividades;
     private int numeroActividades;
+
+    /**
+     * Este es el constructor de la clase.
+     */
     public GestorActividades(){
         actividades = new ArrayList<Actividad>();
     }
+
+    /**
+     * Este método devuelve las actividades del camping.
+     */
     public ArrayList<Actividad> getActividades(){return actividades;}
+
+    /**
+     * Este método agrega una actividad al camping.
+     */
     public void agregarActividad(){
         String descripcion;
         float precio;
@@ -19,12 +35,21 @@ public class GestorActividades implements Serializable {
         numeroActividades += 1;
         System.out.println("La actividad: " + actividades.getLast().getId() + " se ha añadido con éxito");
     }
+
+    /**
+     * Este método lista las actividades del camping.
+     */
     public void listarActividades(){
         int i;
         for(i=0;i<actividades.size();i++){
             System.out.println(actividades.get(i).getId() + ": " + actividades.get(i).getDescripcion());
         }
     }
+
+    /**
+     * Este método recupera una actividad del camping.
+     * @param id es el id de la actividad que se quiere recuperar.
+     */
     public void recuperarActividad(String id){
         int i;
         boolean flag = false;
@@ -40,6 +65,10 @@ public class GestorActividades implements Serializable {
             System.out.println("Error: No se ha encontrado la actividad");
         }
     }
+
+    /**
+     * Este método muestra el menú de actividades.
+     */
     public void menuActividades(){
         String s;
         do{

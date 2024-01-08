@@ -2,22 +2,37 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Esta clase representa un gestor de facturas del camping.
+ * @author Adrián Santiuste Gil y Diego García Santos.
+ */
 public class GestorFacturas implements Serializable {
     private GestorClientes clientes;
     private GestorBungalos bungalos;
     private ArrayList<Factura> facturas;
     private int numFactura = 0;
+
+    /**
+     * Este es el constructor de la clase.
+     * @param clientes son los clientes del camping.
+     * @param bungalos son los bungalos del camping.
+     */
     public GestorFacturas(GestorClientes clientes, GestorBungalos bungalos){
         this.bungalos = bungalos;
         this.clientes = clientes;
         this.facturas = new ArrayList<Factura>();
     }
+
+    /**
+     * Este método genera una factura.
+     */
     public void generarFactura(){
         String id;
         Reserva r = null;
         int i, j;
         float precio = 0;
         Cliente cliente = null;
+        ArrayList<String> conceptos = new ArrayList<>();
         LocalDate fechaFacturacion;
         System.out.println("Introduzca el id de la reserva a facturar:");
         id = MyInput.readString();
@@ -29,10 +44,15 @@ public class GestorFacturas implements Serializable {
         }
         System.out.println("Introduce la fecha de facturación:");
         fechaFacturacion = LocalDate.parse(MyInput.readString());
+
+
+
+
         for(i=0;i<bungalos.getBungalos().size();i++){
             for(j=0;j<bungalos.getBungalos().get(i).getReserva_0().getActividades().size();j++){
                 if(bungalos.getBungalos().get(i).getReserva_0().getActividades().get(j).getId().equals(id)){
                     r = bungalos.getBungalos().get(i).getReserva_0().getActividades().get(j);
+                    conceptos.add("Bungalow con codigo:  " + bungalos.getBungalos().get(i).getId() + " nombre: "+ bungalos.getBungalos().get(i).getNombre() + " con precio diario: " + bungalos.getBungalos().get(i).getPrecio());
                     precio = r.getPrecio();
                 }
             }
@@ -41,13 +61,16 @@ public class GestorFacturas implements Serializable {
             System.out.println("No se ha encontrado la reserva");
             return;
         }
+
         for(i=0;i<clientes.getClientes().size();i++){
             if(clientes.getClientes().get(i).getId().equals(r.getCliente())){
                 cliente = clientes.getClientes().get(i);
             }
         }
+
         if(r.getFechaFin().isBefore(fechaFacturacion) || r.getFechaFin().isEqual(fechaFacturacion)){
-            facturas.add(new Factura(cliente, precio, fechaFacturacion, r, numFactura));
+            facturas.add(new Factura(cliente, precio, fechaFacturacion, r, numFactura,conceptos));
+            System.out.println("Factura generada con éxito, numero de factura: " + facturas.getLast().getId());
             numFactura++;
         }
         else{
@@ -55,6 +78,10 @@ public class GestorFacturas implements Serializable {
         }
 
     }
+
+    /**
+     * Este método muestra las facturas de un cliente.
+     */
     public void mostrarFacturasCliente(){
         String DNI;
         int i, j, k;
@@ -74,6 +101,10 @@ public class GestorFacturas implements Serializable {
             System.out.println("Error: Cliente no encontrado");
         }
     }
+
+    /**
+     * Este método muestra los datos de una factura.
+     */
     public void datosFactura(){
         String DNI, idFactura;
         int i, j, k;
@@ -91,18 +122,16 @@ public class GestorFacturas implements Serializable {
             System.out.println("Error: Datos no coincidentes");
         }
         else{
-            System.out.println(f.getId());
-            System.out.println(f.getCliente().getId());
-            System.out.println(f.getCliente().getNombre());
-            System.out.println(f.getCliente().getTelefono());
-            System.out.println(f.getReservas().getId());
-            System.out.println(f.getCosteTotal());
-            System.out.println(f.getFechaFacturacion());
+            f.mostrarFactura();
         }
 
 
 
     }
+
+    /**
+     * Este método muestra el menú de facturas.
+     */
     public void menuFacturas(){
         String s;
         do{
