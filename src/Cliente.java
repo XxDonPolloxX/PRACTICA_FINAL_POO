@@ -25,7 +25,7 @@ public class Cliente implements java.io.Serializable{
     }
 
     /**
-     * Este método añade una reserva al cliente.
+     * Este método devueltve las reservas del  cliente.
      */
     public ArrayList<ReservaBungalo> getReservas(){return reservas;}
 
